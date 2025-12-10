@@ -17,7 +17,7 @@ const SecurityIndicators = () => {
             key={idx}
             className="trust-indicator group cursor-default"
           >
-            <div className="p-1.5 rounded-md bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+            <div className="p-1.5 rounded-md bg-primary/15 group-hover:bg-primary/25 transition-colors duration-300">
               <Icon size={12} className="text-primary" />
             </div>
             <span className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
