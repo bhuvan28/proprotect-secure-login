@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, AlertCircle, Loader2 } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, AlertTriangle, Loader2, Shield, CheckCircle } from "lucide-react";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 
 const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(1, "Password is required"),
+  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  password: z.string().min(1, "Password is required").max(128, "Password must be less than 128 characters"),
 });
 
 interface LoginFormProps {
@@ -64,13 +63,14 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground">
-            Email Address
-          </label>
-          <Input
-            variant="security"
+      {/* Email Field */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-[#2D3748]">
+          Email Address
+        </label>
+        <div className="relative">
+          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#718096]" />
+          <input
             type="email"
             placeholder="you@company.com"
             value={email}
@@ -78,23 +78,28 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
               setEmail(e.target.value);
               if (errors.email) setErrors({ ...errors, email: undefined });
             }}
-            icon={<Mail size={18} />}
-            className={errors.email ? "border-destructive focus:ring-destructive/50" : ""}
+            className={`form-input ${errors.email ? 'error' : ''}`}
+            aria-label="Email address"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
           />
-          {errors.email && (
-            <p className="text-xs text-destructive flex items-center gap-1 animate-fade-in">
-              <AlertCircle size={12} />
-              {errors.email}
-            </p>
-          )}
         </div>
+        {errors.email && (
+          <p id="email-error" className="text-xs text-destructive flex items-center gap-1 animate-fade-in" role="alert">
+            <AlertTriangle className="w-3 h-3" />
+            {errors.email}
+          </p>
+        )}
+      </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground">
-            Password
-          </label>
-          <Input
-            variant="security"
+      {/* Password Field */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-[#2D3748]">
+          Password
+        </label>
+        <div className="relative">
+          <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#718096]" />
+          <input
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
             value={password}
@@ -102,29 +107,31 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
               setPassword(e.target.value);
               if (errors.password) setErrors({ ...errors, password: undefined });
             }}
-            icon={<Lock size={18} />}
-            rightIcon={
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            }
-            className={errors.password ? "border-destructive focus:ring-destructive/50" : ""}
+            className={`form-input pr-12 ${errors.password ? 'error' : ''}`}
+            aria-label="Password"
+            aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? "password-error" : undefined}
           />
-          {errors.password && (
-            <p className="text-xs text-destructive flex items-center gap-1 animate-fade-in">
-              <AlertCircle size={12} />
-              {errors.password}
-            </p>
-          )}
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#718096] hover:text-[#4A5568] transition-colors"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff className="w-[18px] h-[18px]" /> : <Eye className="w-[18px] h-[18px]" />}
+          </button>
         </div>
-
-        {isSignUp && <PasswordStrengthMeter password={password} />}
+        {errors.password && (
+          <p id="password-error" className="text-xs text-destructive flex items-center gap-1 animate-fade-in" role="alert">
+            <AlertTriangle className="w-3 h-3" />
+            {errors.password}
+          </p>
+        )}
       </div>
 
+      {isSignUp && <PasswordStrengthMeter password={password} />}
+
+      {/* Remember Me & Forgot Password */}
       {!isSignUp && (
         <div className="flex items-center justify-between">
           <label className="flex items-center gap-2 cursor-pointer group">
@@ -132,10 +139,11 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="w-4 h-4 rounded border-border bg-input text-primary focus:ring-primary/50 cursor-pointer accent-primary"
+              className="w-4 h-4 rounded border-[#E2E8F0] text-primary focus:ring-primary/50 cursor-pointer"
+              aria-label="Keep me signed in"
             />
-            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-              Remember this device
+            <span className="text-sm text-[#718096] group-hover:text-[#4A5568] transition-colors">
+              Keep me signed in
             </span>
           </label>
           <button
@@ -147,79 +155,64 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
         </div>
       )}
 
+      {/* MFA Indicator */}
+      <div className="flex items-center gap-2 text-xs text-success">
+        <Shield className="w-3.5 h-3.5" />
+        <span>MFA enabled for this account</span>
+        <CheckCircle className="w-3 h-3" />
+      </div>
+
+      {/* Submit Button */}
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary w-full flex items-center justify-center gap-2 text-sm"
+        className="btn-primary flex items-center justify-center gap-2"
+        aria-busy={isLoading}
       >
         {isLoading ? (
           <>
-            <Loader2 size={18} className="animate-spin" />
-            <span>{isSignUp ? "Creating Account..." : "Authenticating..."}</span>
+            <Loader2 className="w-[18px] h-[18px] animate-spin" />
+            <span>{isSignUp ? "Creating Account..." : "Signing in..."}</span>
           </>
         ) : (
           <>
-            <span>{isSignUp ? "Create Secure Account" : "Sign In Securely"}</span>
-            <ArrowRight size={18} />
+            <span>{isSignUp ? "Create Account" : "Sign In"}</span>
+            <ArrowRight className="w-[18px] h-[18px]" />
           </>
         )}
       </button>
 
+      {/* Divider */}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-border" />
+          <div className="w-full border-t border-[#E2E8F0]" />
         </div>
-        <div className="relative flex justify-center text-xs">
-          <span className="px-3 bg-card text-muted-foreground">
-            or continue with
-          </span>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="px-3 bg-white text-[#718096]">Or</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <button
-          type="button"
-          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary hover:border-primary/30 text-sm font-medium transition-colors"
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-            />
-            <path
-              fill="currentColor"
-              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-            />
-            <path
-              fill="currentColor"
-              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-            />
-            <path
-              fill="currentColor"
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-            />
-          </svg>
-          Google SSO
-        </button>
-        <button
-          type="button"
-          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-secondary/50 hover:bg-secondary hover:border-primary/30 text-sm font-medium transition-colors"
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-          </svg>
-          GitHub SSO
-        </button>
-      </div>
+      {/* SSO Button */}
+      <button
+        type="button"
+        className="btn-outline flex items-center justify-center gap-2"
+      >
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Sign in with SSO
+      </button>
 
-      <p className="text-center text-sm text-muted-foreground">
+      {/* Toggle Sign In / Sign Up */}
+      <p className="text-center text-sm text-[#718096] pt-2">
         {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
         <button
           type="button"
           onClick={onToggleMode}
           className="text-primary hover:text-primary/80 transition-colors font-medium"
         >
-          {isSignUp ? "Sign in" : "Request access"}
+          {isSignUp ? "Sign in" : "Contact your administrator"}
         </button>
       </p>
     </form>

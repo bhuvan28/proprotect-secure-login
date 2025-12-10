@@ -51,7 +51,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        success: "hsl(var(--success))",
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
         warning: "hsl(var(--warning))",
         info: "hsl(var(--info))",
         sidebar: {
@@ -71,9 +74,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        'soft': '0 4px 20px hsl(210 50% 5% / 0.3)',
-        'glow': '0 0 60px hsl(174 72% 50% / 0.15)',
-        'card': '0 25px 50px -12px hsl(210 50% 5% / 0.4)',
+        'soft': '0 4px 20px rgba(0, 0, 0, 0.08)',
+        'glow': '0 0 60px rgba(45, 125, 210, 0.2)',
+        'card': '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
       },
       keyframes: {
         "accordion-down": {
