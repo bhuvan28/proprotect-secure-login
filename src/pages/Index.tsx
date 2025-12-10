@@ -1,115 +1,128 @@
 import { useState } from "react";
 import ProProtectLogo from "@/components/ProProtectLogo";
 import LoginForm from "@/components/LoginForm";
-import ComplianceBadges from "@/components/ComplianceBadges";
-import SecurityIndicators from "@/components/SecurityIndicators";
-import SecurityDisclaimer from "@/components/SecurityDisclaimer";
-import { Shield, Lock, Server } from "lucide-react";
+import { NetworkAnimation } from "@/components/NetworkAnimation";
+import { TrustIndicators } from "@/components/TrustIndicators";
+import { Shield, Lock, ExternalLink } from "lucide-react";
 
 const Index = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 security-grid opacity-60" />
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Teal gradient glows */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-primary/3 rounded-full blur-3xl" />
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left Side - Dark Brand Panel */}
+      <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] dark-panel hexagon-pattern relative flex-col justify-between p-10 xl:p-14">
+        {/* Network Animation Background */}
+        <NetworkAnimation />
         
-        {/* Floating security icons */}
-        <div className="absolute top-24 left-12 opacity-10 floating-shield hidden lg:block">
-          <Shield className="w-16 h-16 text-primary" />
+        {/* Logo */}
+        <div className="relative z-10">
+          <ProProtectLogo size="lg" />
         </div>
-        <div className="absolute top-48 right-24 opacity-10 floating-shield hidden lg:block" style={{ animationDelay: '2s' }}>
-          <Lock className="w-12 h-12 text-primary" />
+        
+        {/* Center Content */}
+        <div className="relative z-10 space-y-8 animate-fade-in">
+          <div className="space-y-4">
+            <h1 className="text-3xl xl:text-4xl font-bold text-white leading-tight">
+              Enterprise Cloud Security
+            </h1>
+            <p className="text-lg text-white/70 leading-relaxed max-w-md">
+              Self-hosted CloudOps, DevSecOps and FinOps automation. 
+              Complete visibility with zero data egress.
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4">
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+              <p className="text-2xl font-bold text-primary">98.9%</p>
+              <p className="text-xs text-white/60 mt-1">MTTD Reduction</p>
+            </div>
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+              <p className="text-2xl font-bold text-primary">25%</p>
+              <p className="text-xs text-white/60 mt-1">Cost Savings</p>
+            </div>
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+              <p className="text-2xl font-bold text-primary">&lt;5min</p>
+              <p className="text-xs text-white/60 mt-1">MTTR</p>
+            </div>
+          </div>
+
+          {/* Floating Security Icons */}
+          <div className="flex items-center gap-6 pt-4">
+            <div className="p-3 rounded-lg bg-primary/20 float-animation">
+              <Shield className="w-6 h-6 text-primary" />
+            </div>
+            <div className="p-3 rounded-lg bg-primary/20 float-animation" style={{ animationDelay: '1s' }}>
+              <Lock className="w-6 h-6 text-primary" />
+            </div>
+          </div>
         </div>
-        <div className="absolute bottom-40 left-24 opacity-10 floating-shield hidden lg:block" style={{ animationDelay: '4s' }}>
-          <Server className="w-14 h-14 text-primary" />
+
+        {/* Trust Indicators */}
+        <div className="relative z-10 space-y-4">
+          <TrustIndicators />
+          <p className="text-xs text-white/40">
+            © 2024 ProProtect. All rights reserved.
+          </p>
         </div>
       </div>
 
-      <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
-        {/* Left side - Branding */}
-        <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] flex-col justify-between p-12 xl:p-16">
-          <div>
-            <ProProtectLogo size="lg" />
+      {/* Right Side - Login Form */}
+      <div className="flex-1 light-panel flex items-center justify-center p-6 lg:p-12 min-h-screen lg:min-h-0">
+        <div className="w-full max-w-[420px]">
+          {/* Mobile Logo */}
+          <div className="lg:hidden mb-8 flex justify-center">
+            <ProProtectLogo size="md" />
           </div>
-          
-          <div className="max-w-xl space-y-8 animate-fade-in">
-            <div className="space-y-4">
-              <h1 className="text-4xl xl:text-5xl font-bold leading-tight text-foreground">
-                Your Cloud.
-                <br />
-                <span className="text-gradient">Your Control.</span>
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Enterprise-grade cloud security that runs entirely within your infrastructure. 
-                Complete visibility, AI-powered insights, and audit-ready compliance.
+
+          {/* Login Card */}
+          <div className="login-card p-8 lg:p-10 animate-slide-up">
+            {/* Header */}
+            <div className="text-center space-y-2 mb-8">
+              <h2 className="text-2xl lg:text-[28px] font-bold text-[#2D3748]">
+                Welcome Back
+              </h2>
+              <p className="text-sm text-[#718096]">
+                Enter your credentials to access your dashboard
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
-                <p className="text-2xl xl:text-3xl font-bold text-primary">98.9%</p>
-                <p className="text-sm text-muted-foreground">MTTD Reduction</p>
-              </div>
-              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
-                <p className="text-2xl xl:text-3xl font-bold text-primary">25%</p>
-                <p className="text-sm text-muted-foreground">Cost Savings</p>
-              </div>
-              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
-                <p className="text-2xl xl:text-3xl font-bold text-primary">&lt;5min</p>
-                <p className="text-sm text-muted-foreground">MTTR</p>
+            {/* Form */}
+            <LoginForm 
+              onToggleMode={() => setIsSignUp(!isSignUp)} 
+              isSignUp={isSignUp}
+            />
+
+            {/* Security Badge */}
+            <div className="mt-6 pt-6 border-t border-border">
+              <div className="flex items-center justify-center gap-1.5 security-badge">
+                <Lock className="w-3 h-3" />
+                <span>256-bit SSL Encryption</span>
               </div>
             </div>
-
-            <SecurityIndicators />
           </div>
 
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Trusted by security-conscious organizations worldwide
-            </p>
-            <ComplianceBadges />
+          {/* Footer Links */}
+          <div className="mt-8 flex items-center justify-center gap-4 text-xs text-[#718096]">
+            <a href="#" className="hover:text-primary transition-colors flex items-center gap-1">
+              Contact Support
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <span className="text-border">|</span>
+            <a href="#" className="hover:text-primary transition-colors">System Status</a>
+            <span className="text-border">|</span>
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
           </div>
-        </div>
 
-        {/* Right side - Login Form */}
-        <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
-          <div className="w-full max-w-md">
-            {/* Mobile Logo */}
-            <div className="lg:hidden mb-8 flex justify-center">
-              <ProProtectLogo size="md" />
-            </div>
+          {/* Version */}
+          <p className="mt-4 text-center text-[11px] text-[#CBD5E0]">
+            ProProtect v4.5.2
+          </p>
 
-            <div className="glass-card teal-glow p-8 space-y-6">
-              <div className="text-center space-y-2">
-                <h2 className="text-2xl font-bold text-foreground">
-                  {isSignUp ? "Create Account" : "Welcome Back"}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {isSignUp 
-                    ? "Start your security journey with ProProtect"
-                    : "Sign in to access your security dashboard"
-                  }
-                </p>
-              </div>
-
-              <LoginForm 
-                onToggleMode={() => setIsSignUp(!isSignUp)} 
-                isSignUp={isSignUp}
-              />
-
-              <SecurityDisclaimer />
-            </div>
-
-            {/* Mobile Compliance */}
-            <div className="lg:hidden mt-8 space-y-4">
-              <SecurityIndicators />
-              <ComplianceBadges />
-            </div>
+          {/* Mobile Trust Indicators */}
+          <div className="lg:hidden mt-8">
+            <TrustIndicators variant="light" />
           </div>
         </div>
       </div>

@@ -6,80 +6,83 @@
 
 @layer base {
   :root {
-    /* ProProtect Dark Navy + Teal Theme */
-    --background: 210 50% 10%;
-    --foreground: 200 20% 95%;
+    /* ProProtect Brand Colors */
+    --background: 216 28% 15%;
+    --foreground: 0 0% 100%;
     
-    --card: 210 45% 14%;
-    --card-foreground: 200 20% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 26% 25%;
     
-    --popover: 210 45% 12%;
-    --popover-foreground: 200 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 26% 25%;
     
-    --primary: 174 72% 50%;
-    --primary-foreground: 210 50% 8%;
+    --primary: 209 66% 50%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 210 40% 18%;
-    --secondary-foreground: 200 20% 90%;
+    --secondary: 210 29% 97%;
+    --secondary-foreground: 220 26% 25%;
     
-    --muted: 210 35% 22%;
-    --muted-foreground: 200 15% 55%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 16% 47%;
     
-    --accent: 174 72% 50%;
-    --accent-foreground: 210 50% 8%;
+    --accent: 209 82% 59%;
+    --accent-foreground: 0 0% 100%;
     
-    --destructive: 0 72% 51%;
+    --destructive: 0 84% 69%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 210 30% 22%;
-    --input: 210 40% 16%;
-    --ring: 174 72% 50%;
+    --success: 145 63% 51%;
+    --success-foreground: 0 0% 100%;
     
-    --radius: 0.625rem;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 209 66% 50%;
+    
+    --radius: 0.5rem;
     
     /* Status Colors */
-    --success: 160 60% 45%;
     --warning: 38 92% 50%;
-    --info: 174 72% 50%;
+    --info: 209 66% 50%;
 
-    --sidebar-background: 210 50% 10%;
-    --sidebar-foreground: 200 20% 95%;
-    --sidebar-primary: 174 72% 50%;
-    --sidebar-primary-foreground: 210 50% 8%;
-    --sidebar-accent: 210 40% 18%;
-    --sidebar-accent-foreground: 200 20% 95%;
-    --sidebar-border: 210 30% 22%;
-    --sidebar-ring: 174 72% 50%;
+    /* Sidebar */
+    --sidebar-background: 216 28% 15%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 209 66% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 26% 21%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 26% 25%;
+    --sidebar-ring: 209 66% 50%;
   }
 
   .dark {
-    --background: 210 50% 8%;
-    --foreground: 200 20% 95%;
+    --background: 216 32% 12%;
+    --foreground: 0 0% 100%;
     
-    --card: 210 45% 12%;
-    --card-foreground: 200 20% 95%;
+    --card: 220 26% 21%;
+    --card-foreground: 0 0% 100%;
     
-    --popover: 210 45% 10%;
-    --popover-foreground: 200 20% 95%;
+    --popover: 220 26% 21%;
+    --popover-foreground: 0 0% 100%;
     
-    --primary: 174 72% 50%;
-    --primary-foreground: 210 50% 8%;
+    --primary: 209 66% 50%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 210 40% 15%;
-    --secondary-foreground: 200 20% 90%;
+    --secondary: 220 26% 25%;
+    --secondary-foreground: 0 0% 98%;
     
-    --muted: 210 35% 18%;
-    --muted-foreground: 200 15% 50%;
+    --muted: 220 26% 25%;
+    --muted-foreground: 214 16% 65%;
     
-    --accent: 174 72% 50%;
-    --accent-foreground: 210 50% 8%;
+    --accent: 209 82% 59%;
+    --accent-foreground: 0 0% 100%;
     
-    --destructive: 0 72% 51%;
+    --destructive: 0 84% 69%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 210 30% 20%;
-    --input: 210 40% 14%;
-    --ring: 174 72% 50%;
+    --border: 220 26% 30%;
+    --input: 220 26% 25%;
+    --ring: 209 66% 50%;
   }
 }
 
@@ -95,105 +98,147 @@
 }
 
 @layer components {
-  /* Glass Card Effect */
-  .glass-card {
-    @apply bg-card/90 backdrop-blur-xl border border-border/60 rounded-2xl;
-    box-shadow: 
-      0 4px 6px -1px hsl(210 50% 5% / 0.4),
-      0 2px 4px -2px hsl(210 50% 5% / 0.3),
-      inset 0 1px 0 0 hsl(200 20% 95% / 0.03);
+  /* Dark Panel Background */
+  .dark-panel {
+    background: linear-gradient(135deg, #1a2332 0%, #2D3748 100%);
   }
   
-  /* Security Grid Pattern */
-  .security-grid {
-    background-image: 
-      linear-gradient(hsl(174 72% 50% / 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(174 72% 50% / 0.02) 1px, transparent 1px);
+  /* Light Panel Background */
+  .light-panel {
+    background: linear-gradient(180deg, #F7FAFC 0%, #EDF2F7 100%);
+  }
+  
+  /* Login Card */
+  .login-card {
+    @apply bg-white rounded-xl;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animated Hexagon Pattern */
+  .hexagon-pattern {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hexagon-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%232D7DD2' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 60px 60px;
+    animation: float-pattern 20s linear infinite;
+    opacity: 0.5;
   }
   
-  /* Teal Glow Effect */
-  .teal-glow {
-    box-shadow: 
-      0 0 30px hsl(174 72% 50% / 0.1),
-      0 0 60px hsl(174 72% 50% / 0.05);
+  @keyframes float-pattern {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-60px) translateX(-60px); }
   }
   
   /* Input Field Styling */
-  .input-security {
-    @apply w-full px-4 py-3 rounded-lg border transition-all duration-300;
-    @apply bg-input border-border text-foreground placeholder:text-muted-foreground;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50;
+  .form-input {
+    @apply w-full h-12 px-4 pl-12 rounded-md border transition-all duration-200;
+    @apply bg-white border-border text-foreground placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary;
+    font-size: 16px;
+  }
+  
+  .form-input.error {
+    @apply border-destructive focus:ring-destructive/30 focus:border-destructive;
   }
   
   /* Primary Button */
   .btn-primary {
-    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg;
-    @apply hover:bg-primary/90 transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply h-12 w-full font-semibold rounded-md transition-all duration-200;
+    background: linear-gradient(135deg, #2D7DD2 0%, #4093EB 100%);
+    @apply text-white;
+    @apply hover:opacity-90 hover:scale-[1.02] active:scale-[0.98];
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+    box-shadow: 0 4px 14px 0 rgba(45, 125, 210, 0.3);
   }
   
-  /* Secondary Button */
-  .btn-secondary {
-    @apply bg-transparent text-foreground font-medium px-6 py-3 rounded-lg border border-border;
-    @apply hover:bg-secondary hover:border-primary/30 transition-all duration-200;
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px 0 rgba(45, 125, 210, 0.4);
   }
   
-  /* Password Strength Bar */
-  .strength-bar {
-    @apply h-1.5 rounded-full transition-all duration-500;
+  /* Secondary/Outline Button */
+  .btn-outline {
+    @apply h-12 w-full font-medium rounded-md border transition-all duration-200;
+    @apply bg-white border-border text-foreground;
+    @apply hover:bg-secondary;
   }
   
-  /* Compliance Badge */
-  .compliance-badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium;
-    @apply bg-primary/10 text-primary border border-primary/25;
+  /* Trust Badge */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium;
+    @apply bg-white/10 text-white/80 border border-white/20;
   }
   
-  /* Trust Indicator */
-  .trust-indicator {
-    @apply flex items-center gap-2 text-sm text-muted-foreground;
-  }
-  
-  /* Gradient Text - Teal */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(174 72% 50%), hsl(174 72% 65%));
+  /* Security Badge */
+  .security-badge {
+    @apply inline-flex items-center gap-1.5 text-xs;
+    color: #A0AEC0;
   }
   
   /* Floating Animation */
-  .floating-shield {
+  .float-animation {
     animation: float 6s ease-in-out infinite;
   }
   
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
   }
-
-  /* Shadow utilities */
-  .shadow-soft {
-    box-shadow: 0 4px 20px hsl(210 50% 5% / 0.2);
+  
+  /* Glow Effect */
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(45, 125, 210, 0.3);
+  }
+  
+  /* Network Lines Animation */
+  .network-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  
+  .network-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(45, 125, 210, 0.4), transparent);
+    height: 1px;
+    animation: network-pulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes network-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
   }
 }
 
 @layer utilities {
   .animate-fade-in {
-    animation: fade-in 0.6s ease-out forwards;
+    animation: fade-in 0.5s ease-out forwards;
   }
   
-  .animate-slide-in {
-    animation: slide-in 0.5s ease-out forwards;
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
   }
+  
+  .animate-stagger-1 { animation-delay: 0.1s; opacity: 0; }
+  .animate-stagger-2 { animation-delay: 0.2s; opacity: 0; }
+  .animate-stagger-3 { animation-delay: 0.3s; opacity: 0; }
+  .animate-stagger-4 { animation-delay: 0.4s; opacity: 0; }
 
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
   }
 
-  @keyframes slide-in {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
