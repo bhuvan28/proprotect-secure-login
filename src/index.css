@@ -99,9 +99,9 @@
 
 @layer components {
   /* Dark Panel Background */
-  .dark-panel {
-    background: linear-gradient(135deg, #1a2332 0%, #2D3748 100%);
-  }
+.dark-panel {
+  background: linear-gradient(135deg, #2a3a4d 0%, #3d4f63 100%);
+}
   
   /* Light Panel Background */
   .light-panel {
