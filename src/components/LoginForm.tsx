@@ -182,27 +182,27 @@ const LoginForm = ({ onToggleMode, isSignUp }: LoginFormProps) => {
         )}
       </button>
 
-      {/* Divider */}
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#E2E8F0]" />
+      {/* Enterprise Security Notice */}
+      <div className="p-4 rounded-lg bg-[#F7FAFC] border border-[#E2E8F0] space-y-3">
+        <div className="flex items-start gap-2">
+          <Shield className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs font-medium text-[#2D3748]">Enterprise Security Notice</p>
+            <p className="text-xs text-[#718096] mt-1">
+              This portal is protected by enterprise-grade security measures including multi-factor authentication, rate limiting, and anomaly detection.
+            </p>
+          </div>
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="px-3 bg-white text-[#718096]">Or</span>
+        <div className="flex items-start gap-2">
+          <AlertTriangle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs font-medium text-[#2D3748]">Authorized Access Only</p>
+            <p className="text-xs text-[#718096] mt-1">
+              Unauthorized access attempts are logged and reported. By signing in, you agree to our security monitoring policies.
+            </p>
+          </div>
         </div>
       </div>
-
-      {/* SSO Button */}
-      <button
-        type="button"
-        className="btn-outline flex items-center justify-center gap-2"
-      >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-        Sign in with SSO
-      </button>
 
       {/* Toggle Sign In / Sign Up */}
       <p className="text-center text-sm text-[#718096] pt-2">

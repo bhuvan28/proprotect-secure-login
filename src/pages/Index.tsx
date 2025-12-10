@@ -2,7 +2,6 @@ import { useState } from "react";
 import ProProtectLogo from "@/components/ProProtectLogo";
 import LoginForm from "@/components/LoginForm";
 import { NetworkAnimation } from "@/components/NetworkAnimation";
-import { TrustIndicators } from "@/components/TrustIndicators";
 import { Shield, Lock, ExternalLink } from "lucide-react";
 
 const Index = () => {
@@ -59,9 +58,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="relative z-10 space-y-4">
-          <TrustIndicators />
+        {/* Footer */}
+        <div className="relative z-10 space-y-2">
           <p className="text-xs text-white/40">
             © 2024 ProProtect. All rights reserved.
           </p>
@@ -120,10 +118,6 @@ const Index = () => {
             ProProtect v4.5.2
           </p>
 
-          {/* Mobile Trust Indicators */}
-          <div className="lg:hidden mt-8">
-            <TrustIndicators variant="light" />
-          </div>
         </div>
       </div>
     </div>
