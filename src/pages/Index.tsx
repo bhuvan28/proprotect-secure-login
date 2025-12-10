@@ -14,6 +14,9 @@ const Index = () => {
         {/* Network Animation Background */}
         <NetworkAnimation />
         
+        {/* Light gradient overlay at top for logo visibility */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/20 to-transparent z-[1]" />
+        
         {/* Logo */}
         <div className="relative z-10">
           <ProProtectLogo size="lg" variant="dark" />
