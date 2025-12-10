@@ -16,7 +16,7 @@ const Index = () => {
         
         {/* Logo */}
         <div className="relative z-10">
-          <ProProtectLogo size="lg" />
+          <ProProtectLogo size="lg" variant="dark" />
         </div>
         
         {/* Center Content */}
