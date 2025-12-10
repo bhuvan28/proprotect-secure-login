@@ -71,9 +71,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        'soft': '0 4px 20px hsl(262 30% 20% / 0.08)',
-        'glow': '0 0 60px hsl(262 83% 58% / 0.2)',
-        'card': '0 25px 50px -12px hsl(262 30% 20% / 0.1)',
+        'soft': '0 4px 20px hsl(210 50% 5% / 0.3)',
+        'glow': '0 0 60px hsl(174 72% 50% / 0.15)',
+        'card': '0 25px 50px -12px hsl(210 50% 5% / 0.4)',
       },
       keyframes: {
         "accordion-down": {

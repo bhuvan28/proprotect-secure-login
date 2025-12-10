@@ -1,22 +1,17 @@
-import { Shield, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
-const badges = [
-  { name: "SOC 2", certified: true },
-  { name: "ISO 27001", certified: true },
-  { name: "GDPR", certified: true },
-  { name: "HIPAA", certified: true },
-];
+const badges = ["CIS", "NIST", "PCI-DSS", "HIPAA", "GDPR"];
 
 const ComplianceBadges = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-2">
+    <div className="flex flex-wrap justify-center lg:justify-start gap-2">
       {badges.map((badge) => (
         <div
-          key={badge.name}
+          key={badge}
           className="compliance-badge group hover:border-primary/50 transition-colors duration-300"
         >
-          <CheckCircle size={12} className="text-success" />
-          <span>{badge.name}</span>
+          {badge}
+          <CheckCircle size={12} className="text-primary" />
         </div>
       ))}
     </div>
