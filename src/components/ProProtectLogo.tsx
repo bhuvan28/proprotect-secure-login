@@ -19,7 +19,7 @@ const ProProtectLogo = ({ size = "md", variant = "dark" }: ProProtectLogoProps) 
         alt="ProProtect - Enterprise Cloud Security"
         width={sizes[size].width}
         height={sizes[size].height}
-        className={`h-auto ${variant === "dark" ? "brightness-0 invert" : ""}`}
+        className="h-auto"
       />
     </div>
   );
