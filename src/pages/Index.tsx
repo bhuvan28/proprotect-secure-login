@@ -71,7 +71,7 @@ const Index = () => {
         <div className="w-full max-w-[420px]">
           {/* Mobile Logo */}
           <div className="lg:hidden mb-8 flex justify-center">
-            <ProProtectLogo size="md" />
+            <ProProtectLogo size="md" variant="light" />
           </div>
 
           {/* Login Card */}
