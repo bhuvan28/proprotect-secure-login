@@ -10,11 +10,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background */}
-      <div className="fixed inset-0 security-grid opacity-30" />
-      <div className="fixed inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+      {/* Decorative Background Elements */}
+      <div className="fixed inset-0 security-grid opacity-40" />
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Purple blob shapes */}
+        <div className="absolute top-10 right-10 w-72 h-72 bg-primary/20 blob-shape blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 blob-shape blur-3xl" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent/15 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
@@ -26,7 +28,7 @@ const Index = () => {
           
           <div className="max-w-xl space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <h1 className="text-4xl xl:text-5xl font-bold leading-tight">
+              <h1 className="text-4xl xl:text-5xl font-bold leading-tight text-foreground">
                 Your Cloud.
                 <br />
                 <span className="text-gradient">Your Control.</span>
@@ -38,15 +40,15 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-3 gap-6">
-              <div className="space-y-1">
+              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
                 <p className="text-2xl xl:text-3xl font-bold text-gradient">98.9%</p>
                 <p className="text-sm text-muted-foreground">MTTD Reduction</p>
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
                 <p className="text-2xl xl:text-3xl font-bold text-gradient">25%</p>
                 <p className="text-sm text-muted-foreground">Cost Savings</p>
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1 p-4 rounded-xl bg-card/60 border border-border/50 shadow-soft">
                 <p className="text-2xl xl:text-3xl font-bold text-gradient">&lt;5min</p>
                 <p className="text-sm text-muted-foreground">Mean Time to Remediate</p>
               </div>
@@ -71,7 +73,7 @@ const Index = () => {
               <ProProtectLogo size="md" />
             </div>
 
-            <div className="glass-card p-8 space-y-6">
+            <div className="glass-card p-8 space-y-6 border border-border/30 shadow-soft">
               <div className="text-center space-y-2">
                 <h2 className="text-2xl font-bold text-foreground">
                   {isSignUp ? "Create Account" : "Welcome Back"}
