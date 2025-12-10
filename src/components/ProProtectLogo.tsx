@@ -2,9 +2,10 @@ import proprotectLogo from "@/assets/proprotect-logo.svg";
 
 interface ProProtectLogoProps {
   size?: "sm" | "md" | "lg";
+  variant?: "light" | "dark";
 }
 
-const ProProtectLogo = ({ size = "md" }: ProProtectLogoProps) => {
+const ProProtectLogo = ({ size = "md", variant = "dark" }: ProProtectLogoProps) => {
   const sizes = {
     sm: { width: 140, height: 43 },
     md: { width: 200, height: 61 },
@@ -18,7 +19,7 @@ const ProProtectLogo = ({ size = "md" }: ProProtectLogoProps) => {
         alt="ProProtect - Enterprise Cloud Security"
         width={sizes[size].width}
         height={sizes[size].height}
-        className="h-auto brightness-0 invert"
+        className={`h-auto ${variant === "dark" ? "brightness-0 invert" : ""}`}
       />
     </div>
   );
