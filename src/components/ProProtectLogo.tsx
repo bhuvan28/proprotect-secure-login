@@ -2,10 +2,9 @@ import proprotectLogo from "@/assets/proprotect-logo.svg";
 
 interface ProProtectLogoProps {
   size?: "sm" | "md" | "lg";
-  variant?: "light" | "dark";
 }
 
-const ProProtectLogo = ({ size = "md", variant = "dark" }: ProProtectLogoProps) => {
+const ProProtectLogo = ({ size = "md" }: ProProtectLogoProps) => {
   const sizes = {
     sm: { width: 140, height: 43 },
     md: { width: 200, height: 61 },
